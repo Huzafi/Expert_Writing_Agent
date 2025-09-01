@@ -1,2 +1,7 @@
 streamlit
 openai-agents
+requests
+openai
+nest_asyncio
+
+
