@@ -1,14 +1,11 @@
-import os
+
 import streamlit as st
 import asyncio
-from dotenv import load_dotenv
+
 from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunConfig
 
-# Load environment variables
-load_dotenv()
+gemini_api_key = st.secrets["GEMINI_API_KEY"]
 
-# Get Gemini API Key from .env
-gemini_api_key = os.getenv("GEMINI_API_KEY")
 if not gemini_api_key:
     st.error("❌ GEMINI_API_KEY is not set. Please check your .env file.")
     st.stop()
