@@ -1,9 +1,11 @@
-
 import streamlit as st
-import asyncio
-
+import nest_asyncio
 from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunConfig
 
+# Apply nest_asyncio fix
+nest_asyncio.apply()
+
+# Load API key
 gemini_api_key = st.secrets["GEMINI_API_KEY"]
 
 if not gemini_api_key:
@@ -39,7 +41,6 @@ writer_agent = Agent(
 )
 
 # ---------------- STREAMLIT UI ----------------
-
 st.set_page_config(page_title="✍️ Writer Agent", page_icon="✍️")
 st.title("✍️ Writer Agent")
 st.markdown("""
@@ -71,18 +72,11 @@ if user_input:
         response_placeholder.markdown("⏳ Generating your response...")
 
     try:
-        # Run synchronous Runner inside asyncio
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        result = loop.run_until_complete(
-            asyncio.get_event_loop().run_in_executor(
-                None,
-                lambda: Runner.run_sync(
-                    writer_agent,
-                    input=user_input,
-                    run_config=config
-                )
-            )
+        # Run agent synchronously (safe inside Streamlit with nest_asyncio)
+        result = Runner.run_sync(
+            writer_agent,
+            input=user_input,
+            run_config=config
         )
 
         # Show final output
