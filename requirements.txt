@@ -3,5 +3,4 @@ openai-agents
 requests
 openai
 nest_asyncio
-
-
+google.generativeai
