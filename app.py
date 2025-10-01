@@ -4,7 +4,7 @@ from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunCo
 import google.generativeai as genai
 
 # Load API Key from secrets
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+gemini_api_key=st.secrets["GEMINI_API_KEY"])
 
 # Apply nest_asyncio fix
 nest_asyncio.apply()
