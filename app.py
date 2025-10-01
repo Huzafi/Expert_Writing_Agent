@@ -1,12 +1,16 @@
 import streamlit as st
 import nest_asyncio
 from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunConfig
+import google.generativeai as genai
+
+# Load API Key from secrets
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
 # Apply nest_asyncio fix
 nest_asyncio.apply()
 
-# Load API key
-gemini_api_key = st.secrets["GEMINI_API_KEY"]
+# # Load API key
+# gemini_api_key = st.secrets["GEMINI_API_KEY"]
 
 if not gemini_api_key:
     st.error("❌ GEMINI_API_KEY is not set. Please check your .env file.")
