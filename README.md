@@ -22,4 +22,4 @@ This app helps you write **essays, poems, emails, and creative stories** interac
 
 ---
 
-You can View it here [https://writer-agent.streamlit.app/]
+You can View it here [https://expert-writing-agent.streamlit.app/]
